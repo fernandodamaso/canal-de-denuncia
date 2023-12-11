@@ -98,7 +98,7 @@ export class HomeComponent {
       dataOcorrencia: [""],
       envolvidos: [""],
       descricaoFinal: [""],
-      anexos: [""],
+      anexos: [null],
     });
   }
 
@@ -120,6 +120,14 @@ export class HomeComponent {
       console.log(this.formData);
     } else {
       console.log("Form is not valid");
+    }
+  }
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.formValues.patchValue({
+        anexos: file,
+      });
     }
   }
 }

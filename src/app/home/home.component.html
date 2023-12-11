@@ -109,7 +109,7 @@
             </label>
             <textarea formControlName="descricaoFinal" placeholder="Descrição"></textarea>
           </div>
-          <div class="row"><button>Anexar evidências</button></div>
+          <div class="row"><input type="file" formControlName="anexos" (change)="onFileChange($event)">Anexar Evidencias</div>
           <div class="row"><button (click)="sendData()">Enviar</button></div>
         </div>
       </div>
