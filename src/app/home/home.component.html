@@ -1,0 +1,113 @@
+<div class="conteudo">
+  <div class="layout">
+    <form [formGroup]="formValues">
+      <div class="etapa" *ngIf="formPaginaAtual == 1">
+        <h2 class="titulo">Canal de Denúncia</h2>
+        <div class="conteudoTexto" [innerHTML]="conteudoTextos.conteudoTexto1"></div>
+        <div class="downloads">
+          <a href="#">Código de Conduta</a>
+          <a href="#">Regulamento de Compras e Contratações</a>
+          <a href="#">Manual de Registro de Manifestações</a>
+          <a href="#">Política de Classificação e Apuração de Manifestação</a>
+        </div>
+        <div class="form">
+          <div class="row">
+            <input type="email" formControlName="email" placeholder="E-mail:" />
+          </div>
+          <div class="row">
+            <input type="tel" formControlName="telefone" placeholder="Telefone:" />
+          </div>
+          <div class="row">
+            <input type="whatsapp" formControlName="whatsapp" placeholder="WhatsApp:" />
+          </div>
+          <div class="row">
+            <button (click)="proximaEtapa(2)">Clique aqui para registrar sua Manifestação</button>
+          </div>
+        </div>
+      </div>
+      <div class="etapa" *ngIf="formPaginaAtual == 2">
+        <div class="conteudoTexto" [innerHTML]="conteudoTextos.conteudoTexto2"></div>
+        <div class="checkboxes">
+          <label (click)="proximaEtapa(3)">
+            <input type="checkbox" />
+            Declaro que li e compreendi as informações acima, e desejo prosseguir com a manifestação.
+          </label>
+          <label (click)="proximaEtapa(1)">
+            <input type="checkbox" />
+            Não concordo e não desejo seguir com a manifestação.
+          </label>
+        </div>
+      </div>
+      <div class="etapa" *ngIf="formPaginaAtual == 3">
+        <div class="conteudoTexto" [innerHTML]="conteudoTextos.conteudoTexto3"></div>
+        <div class="form">
+          <div class="row checkboxes">
+            <label>
+              <input type="radio" [value]="false" formControlName="anonimo" />
+               Denuncia Anônima
+            </label>
+            <label>
+              <input type="radio" [value]="true" formControlName="anonimo" />
+               Desejo me identificar
+            </label>
+          </div>
+          <div class="hidden" *ngIf="formValues.get('anonimo')?.value">
+            <div class="row">
+              <input type="email" formControlName="email" placeholder="E-mail:" />
+            </div>
+            <div class="row">
+              <input type="tel" formControlName="telefone" placeholder="Telefone:" />
+            </div>
+            <div class="row">
+              <input type="whatsapp" formControlName="whatsapp" placeholder="WhatsApp:" />
+            </div>
+          </div>
+          <div class="row">
+            <button (click)="proximaEtapa(4)">Clique aqui para registrar sua Manifestação</button>
+          </div>
+        </div>
+      </div>
+      <div class="etapa" *ngIf="formPaginaAtual == 4">
+        <div class="conteudoTexto" [innerHTML]="conteudoTextos.conteudoTexto4"></div>
+        <div class="form">
+          <div class="row">
+            <input formControlName="tipoDeManifestacao" type="text" placeholder="Tipo de Manifestação" />
+          </div>
+          <div class="row">
+            <select formControlName="unidade" name="" id="">
+              <option value="">Unidade / Filial</option>
+            </select>
+          </div>
+          <div class="row">
+            <select formControlName="setor" name="" id="">
+              <option value="">Setor</option>
+            </select>
+          </div>
+          <div class="row">
+            <input formControlName="dataOcorrencia" type="text" placeholder="Data da Ocorrência" />
+          </div>
+          <div class="row"></div>
+          <div class="row">
+            <label for="">
+              Envolvidos (Descreva, por gentileza, a(s) pessoa(s) envolvida(s) no evento, inclusive testemunhas, informando, se possível, nome completo, cargo e a participação no fato relatado.):
+            </label>
+            <textarea formControlName="envolvidos" name="" id="" placeholder="Assunto"></textarea>
+          </div>
+
+          <div class="row">
+            <label for="">
+              Há quanto tempo o problema ocorre?
+              <br />
+              O caso é de conhecimento do Gestor?
+              <br />
+              Como tomou conhecimento do caso?:
+            </label>
+            <textarea formControlName="descricaoFinal" name="" id="" placeholder="Descrição"></textarea>
+          </div>
+          <div class="row"><button>Anexar evidências</button></div>
+          <div class="row"><button>Enviar</button></div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
