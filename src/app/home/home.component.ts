@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Validators } from "@angular/forms";
+import { formData } from "../_models/formData.model";
 
 @Component({
   selector: "app-home",
@@ -80,6 +81,7 @@ export class HomeComponent {
     <p>Para acompanhar o andamento da sua manifestação, você receberá um número de protocolo. Agradecemos sua iniciativa e confiança.</p>`,
   };
   formValues: FormGroup;
+  formData: formData = new formData();
   formPaginaAtual: number = 1;
   desejoMeIdentificar: boolean = true;
 
@@ -113,6 +115,11 @@ export class HomeComponent {
   }
 
   sendData() {
-    console.log(this.formValues.value);
+    if (this.formValues.valid) {
+      this.formData = this.formValues.value;
+      console.log(this.formData);
+    } else {
+      console.log("Form is not valid");
+    }
   }
 }
