@@ -44,11 +44,11 @@
           <div class="row checkboxes">
             <label>
               <input type="radio" [value]="false" formControlName="anonimo" />
-               Denuncia Anônima
+              Denuncia Anônima
             </label>
             <label>
               <input type="radio" [value]="true" formControlName="anonimo" />
-               Desejo me identificar
+              Desejo me identificar
             </label>
           </div>
           <div class="hidden" *ngIf="formValues.get('anonimo')?.value">
@@ -60,6 +60,11 @@
             </div>
             <div class="row">
               <input type="whatsapp" formControlName="whatsapp" placeholder="WhatsApp:" />
+            </div>
+            <div class="row">
+              <select formControlName="relacionamento">
+                <option value="Relacionamento com a empresa">Relacionamento com a empresa</option>
+              </select>
             </div>
           </div>
           <div class="row">
@@ -74,13 +79,13 @@
             <input formControlName="tipoDeManifestacao" type="text" placeholder="Tipo de Manifestação" />
           </div>
           <div class="row">
-            <select formControlName="unidade" name="" id="">
-              <option value="">Unidade / Filial</option>
+            <select formControlName="unidade">
+              <option value="Unidade / Filial">Unidade / Filial</option>
             </select>
           </div>
           <div class="row">
-            <select formControlName="setor" name="" id="">
-              <option value="">Setor</option>
+            <select formControlName="setor">
+              <option value="Setor">Setor</option>
             </select>
           </div>
           <div class="row">
@@ -91,7 +96,7 @@
             <label for="">
               Envolvidos (Descreva, por gentileza, a(s) pessoa(s) envolvida(s) no evento, inclusive testemunhas, informando, se possível, nome completo, cargo e a participação no fato relatado.):
             </label>
-            <textarea formControlName="envolvidos" name="" id="" placeholder="Assunto"></textarea>
+            <textarea formControlName="envolvidos" placeholder="Assunto"></textarea>
           </div>
 
           <div class="row">
@@ -102,10 +107,10 @@
               <br />
               Como tomou conhecimento do caso?:
             </label>
-            <textarea formControlName="descricaoFinal" name="" id="" placeholder="Descrição"></textarea>
+            <textarea formControlName="descricaoFinal" placeholder="Descrição"></textarea>
           </div>
           <div class="row"><button>Anexar evidências</button></div>
-          <div class="row"><button>Enviar</button></div>
+          <div class="row"><button (click)="sendData()">Enviar</button></div>
         </div>
       </div>
     </form>

@@ -80,7 +80,7 @@ export class HomeComponent {
     <p>Para acompanhar o andamento da sua manifestação, você receberá um número de protocolo. Agradecemos sua iniciativa e confiança.</p>`,
   };
   formValues: FormGroup;
-  formPaginaAtual: number = 3;
+  formPaginaAtual: number = 1;
   desejoMeIdentificar: boolean = true;
 
   constructor(private fb: FormBuilder) {
@@ -89,10 +89,10 @@ export class HomeComponent {
       telefone: ["", Validators.required],
       whatsapp: ["", Validators.required],
       anonimo: [true],
-      relacionamento: [""],
       tipoDeManifestacao: [""],
-      unidade: [""],
-      setor: [""],
+      relacionamento: ["Relacionamento com a empresa"],
+      unidade: ["Unidade / Filial"],
+      setor: ["Setor"],
       dataOcorrencia: [""],
       envolvidos: [""],
       descricaoFinal: [""],
@@ -106,12 +106,13 @@ export class HomeComponent {
 
   proximaEtapa(etapaNumero: number) {
     if (this.formValues.valid) {
-      console.log(etapaNumero);
-      console.log(this.formValues.value);
       this.formPaginaAtual = etapaNumero;
-      // your logic here...
     } else {
       console.log("Form is not valid");
     }
+  }
+
+  sendData() {
+    console.log(this.formValues.value);
   }
 }
