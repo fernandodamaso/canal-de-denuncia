@@ -64,8 +64,16 @@
             align-items: center;
             justify-content: center;
 
+            @media (max-width: 1200px) {
+              gap: 10px;
+              flex-wrap: wrap;
+            }
+
+
+
             a {
-              width: 205px;
+              flex-basis: 25%;
+              max-width: 205px;
               height: 190px;
               flex-shrink: 0;
               border-radius: 12px;
@@ -81,8 +89,16 @@
               align-items: center;
               justify-content: center;
 
-              @media (max-width: 1024px) {
+              @media (max-width: 1200px) {
+                max-width: initial;
+                width: auto;
                 font-size: 18px;
+                padding: 20px;
+                flex-basis: 35%;;
+              }
+
+              @media (max-width: 550px) {
+                flex-basis: 90%;
               }
             }
           }

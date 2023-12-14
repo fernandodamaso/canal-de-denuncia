@@ -15,13 +15,21 @@
         </div>
         <div class="form">
           <div class="row">
-            <input type="email" formControlName="email" placeholder="E-mail:" />
+            <input type="email" [class.invalid]="formValues.get('email')?.invalid && formValues.get('email')?.touched" formControlName="email" placeholder="E-mail:" />
+            <p class="mensagemInvalido" *ngIf="formValues.get('email')?.invalid && formValues.get('email')?.touched">Campo invalido</p>
           </div>
           <div class="row">
-            <input type="tel" formControlName="telefone" placeholder="Telefone:" mask="(00) 0000-00000"/>
+            <input type="tel" formControlName="telefone" placeholder="Telefone:" mask="(00) 0000-00000" [class.invalid]="formValues.get('email')?.invalid && formValues.get('telefone')?.touched" />
+            <p class="mensagemInvalido" *ngIf="formValues.get('telefone')?.invalid && formValues.get('telefone')?.touched">Campo invalido</p>
           </div>
           <div class="row">
-            <input type="whatsapp" formControlName="whatsapp" placeholder="WhatsApp:" mask="(00) 0000-00000"/>
+            <input
+              type="whatsapp"
+              formControlName="whatsapp"
+              placeholder="WhatsApp:"
+              mask="(00) 0000-00000"
+              [class.invalid]="formValues.get('whatsapp')?.invalid && formValues.get('whatsapp')?.touched" />
+              <p class="mensagemInvalido" *ngIf="formValues.get('whatsapp')?.invalid && formValues.get('whatsapp')?.touched">Campo invalido</p>
           </div>
           <div class="row">
             <button class="botao" (click)="proximaEtapa(2)">Clique aqui para registrar sua Manifestação</button>
@@ -114,12 +122,12 @@
               <br />
               O caso é de conhecimento do Gestor?
               <br />
-              Como tomou conhecimento do caso?:
+              Como tomou conhecimento do caso?
             </label>
             <textarea formControlName="descricaoFinal" placeholder="Descrição"></textarea>
           </div>
           <div class="row">
-            <input type="file" class="custom-file-input" multiple  formControlName="anexos" (change)="onFileChange($event)" />
+            <input type="file" class="custom-file-input" multiple formControlName="anexos" (change)="onFileChange($event)" />
             <!-- Anexar Evidencias -->
           </div>
           <div class="row"><button class="botao" (click)="sendData()">Enviar</button></div>
