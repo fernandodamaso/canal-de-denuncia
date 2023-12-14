@@ -1,0 +1,115 @@
+.conteudo {
+
+  .layout {
+    padding: 50px 20px;
+
+    @media (max-width: 1024px) {
+      padding: 30px 10px;
+
+    }
+
+    form {
+
+      .etapa {
+
+        .titulo {
+          text-align: center;
+          color: #000;
+          font-family: Roboto;
+          font-size: 40px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+
+          @media (max-width: 1024px) {
+            font-size: 25px;
+          }
+        }
+
+
+        .conteudoTexto {
+          color: #000;
+          font-family: Roboto;
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+
+          @media (max-width: 1024px) {
+            font-size: 18px;
+          }
+        }
+
+        .downloads {
+          text-align: center;
+          margin-top: 50px;
+
+          h2 {
+            color: #000;
+            font-family: Roboto;
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            margin-bottom: 20px;
+
+            @media (max-width: 1024px) {
+              font-size: 22px;
+            }
+          }
+
+          .wrap {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+
+            a {
+              width: 205px;
+              height: 190px;
+              flex-shrink: 0;
+              border-radius: 12px;
+              background: #25446A;
+              color: #FFF;
+              text-align: center;
+              font-family: Roboto;
+              font-size: 24px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: normal;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              @media (max-width: 1024px) {
+                font-size: 18px;
+              }
+            }
+          }
+
+        }
+
+        .form {
+          margin-top: 50px;
+
+          .row {
+
+            input {}
+          }
+        }
+
+        .checkboxes {
+          label {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+          }
+        }
+
+        .botao {
+          margin-top: 30px;
+        }
+      }
+    }
+  }
+}

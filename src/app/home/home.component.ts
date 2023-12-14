@@ -1,15 +1,17 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectorRef, Component } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AbstractControl, FormsModule, ReactiveFormsModule, ValidatorFn } from "@angular/forms";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Validators } from "@angular/forms";
 import { formData } from "../_models/formData.model";
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from "ngx-mask";
 
 @Component({
   selector: "app-home",
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule, NgxMaskDirective, NgxMaskPipe],
   templateUrl: "./home.component.html",
+  providers: [provideNgxMask()],
   styleUrl: "./home.component.scss",
 })
 export class HomeComponent {
@@ -84,12 +86,13 @@ export class HomeComponent {
   formData: formData = new formData();
   formPaginaAtual: number = 1;
   desejoMeIdentificar: boolean = true;
+  files: File[] = [];
 
   constructor(private fb: FormBuilder) {
     this.formValues = this.fb.group({
-      email: ["", Validators.required],
-      telefone: ["", Validators.required],
-      whatsapp: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
+      telefone: ["", [Validators.required]],
+      whatsapp: ["", [Validators.required]],
       anonimo: [true],
       tipoDeManifestacao: [""],
       relacionamento: ["Relacionamento com a empresa"],
@@ -98,8 +101,15 @@ export class HomeComponent {
       dataOcorrencia: [""],
       envolvidos: [""],
       descricaoFinal: [""],
-      anexos: [null],
+      anexos: [[]],
     });
+  }
+
+  phoneValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const valid = /^\(\d{2}\) \d{4}-\d{5}$/.test(control.value);
+      return valid ? null : { invalidPhone: { value: control.value } };
+    };
   }
 
   ngOnInit(): void {
@@ -123,11 +133,11 @@ export class HomeComponent {
     }
   }
   onFileChange(event: any) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.formValues.patchValue({
-        anexos: file,
-      });
+    if (event.target.files && event.target.files.length > 0) {
+      this.files = []; // clear the files array
+      for (let i = 0; i < event.target.files.length; i++) {
+        this.files.push(event.target.files[i]);
+      }
     }
   }
 }

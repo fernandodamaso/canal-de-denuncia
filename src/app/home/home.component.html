@@ -5,29 +5,32 @@
         <h2 class="titulo">Canal de Denúncia</h2>
         <div class="conteudoTexto" [innerHTML]="conteudoTextos.conteudoTexto1"></div>
         <div class="downloads">
-          <a href="#">Código de Conduta</a>
-          <a href="#">Regulamento de Compras e Contratações</a>
-          <a href="#">Manual de Registro de Manifestações</a>
-          <a href="#">Política de Classificação e Apuração de Manifestação</a>
+          <h2>Documentos para Consulta</h2>
+          <div class="wrap">
+            <a href="#">Código de Conduta</a>
+            <a href="#">Regulamento de Compras e Contratações</a>
+            <a href="#">Manual de Registro de Manifestações</a>
+            <a href="#">Política de Classificação e Apuração de Manifestação</a>
+          </div>
         </div>
         <div class="form">
           <div class="row">
             <input type="email" formControlName="email" placeholder="E-mail:" />
           </div>
           <div class="row">
-            <input type="tel" formControlName="telefone" placeholder="Telefone:" />
+            <input type="tel" formControlName="telefone" placeholder="Telefone:" mask="(00) 0000-00000"/>
           </div>
           <div class="row">
-            <input type="whatsapp" formControlName="whatsapp" placeholder="WhatsApp:" />
+            <input type="whatsapp" formControlName="whatsapp" placeholder="WhatsApp:" mask="(00) 0000-00000"/>
           </div>
           <div class="row">
-            <button (click)="proximaEtapa(2)">Clique aqui para registrar sua Manifestação</button>
+            <button class="botao" (click)="proximaEtapa(2)">Clique aqui para registrar sua Manifestação</button>
           </div>
         </div>
       </div>
       <div class="etapa" *ngIf="formPaginaAtual == 2">
         <div class="conteudoTexto" [innerHTML]="conteudoTextos.conteudoTexto2"></div>
-        <div class="checkboxes">
+        <div class="checkboxes form">
           <label (click)="proximaEtapa(3)">
             <input type="checkbox" />
             Declaro que li e compreendi as informações acima, e desejo prosseguir com a manifestação.
@@ -43,15 +46,21 @@
         <div class="form">
           <div class="row checkboxes">
             <label>
-              <input type="radio" [value]="false" formControlName="anonimo" />
+              <label class="custom-radio">
+                <input type="radio" [value]="false" formControlName="anonimo" />
+                <span></span>
+              </label>
               Denuncia Anônima
             </label>
             <label>
-              <input type="radio" [value]="true" formControlName="anonimo" />
+              <label class="custom-radio">
+                <input type="radio" [value]="true" formControlName="anonimo" />
+                <span></span>
+              </label>
               Desejo me identificar
             </label>
           </div>
-          <div class="hidden" *ngIf="formValues.get('anonimo')?.value">
+          <div ngClass="form" class="hidden" *ngIf="formValues.get('anonimo')?.value">
             <div class="row">
               <input type="email" formControlName="email" placeholder="E-mail:" />
             </div>
@@ -68,7 +77,7 @@
             </div>
           </div>
           <div class="row">
-            <button (click)="proximaEtapa(4)">Clique aqui para registrar sua Manifestação</button>
+            <button class="botao" (click)="proximaEtapa(4)">Clique aqui para registrar sua Manifestação</button>
           </div>
         </div>
       </div>
@@ -109,8 +118,11 @@
             </label>
             <textarea formControlName="descricaoFinal" placeholder="Descrição"></textarea>
           </div>
-          <div class="row"><input type="file" formControlName="anexos" (change)="onFileChange($event)">Anexar Evidencias</div>
-          <div class="row"><button (click)="sendData()">Enviar</button></div>
+          <div class="row">
+            <input type="file" class="custom-file-input" multiple  formControlName="anexos" (change)="onFileChange($event)" />
+            <!-- Anexar Evidencias -->
+          </div>
+          <div class="row"><button class="botao" (click)="sendData()">Enviar</button></div>
         </div>
       </div>
     </form>
