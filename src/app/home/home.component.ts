@@ -87,6 +87,7 @@ export class HomeComponent {
   formPaginaAtual: number = 1;
   desejoMeIdentificar: boolean = true;
   files: File[] = [];
+  formSubmitted: boolean = false;
 
   constructor(private fb: FormBuilder) {
     this.formValues = this.fb.group({
@@ -117,6 +118,11 @@ export class HomeComponent {
   }
 
   proximaEtapa(etapaNumero: number) {
+    this.formSubmitted = true;
+    if (this.formValues.valid) {
+      // submit the form
+    }
+
     if (this.formValues.valid) {
       this.formPaginaAtual = etapaNumero;
     } else {

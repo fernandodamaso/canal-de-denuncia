@@ -17,10 +17,12 @@
           <div class="row">
             <input type="email" [class.invalid]="formValues.get('email')?.invalid && formValues.get('email')?.touched" formControlName="email" placeholder="E-mail:" />
             <p class="mensagemInvalido" *ngIf="formValues.get('email')?.invalid && formValues.get('email')?.touched">Campo invalido</p>
+            <p class="mensagemInvalido" *ngIf="formValues.get('email') && formValues.get('email')?.errors && formValues.get('email') && formSubmitted">Campo Obrigatório</p>
           </div>
           <div class="row">
             <input type="tel" formControlName="telefone" placeholder="Telefone:" mask="(00) 0000-00000" [class.invalid]="formValues.get('email')?.invalid && formValues.get('telefone')?.touched" />
             <p class="mensagemInvalido" *ngIf="formValues.get('telefone')?.invalid && formValues.get('telefone')?.touched">Campo invalido</p>
+            <p class="mensagemInvalido" *ngIf="formValues.get('telefone') && formValues.get('telefone')?.errors && formValues.get('telefone') && formSubmitted">Campo Obrigatório</p>
           </div>
           <div class="row">
             <input
@@ -29,7 +31,8 @@
               placeholder="WhatsApp:"
               mask="(00) 0000-00000"
               [class.invalid]="formValues.get('whatsapp')?.invalid && formValues.get('whatsapp')?.touched" />
-              <p class="mensagemInvalido" *ngIf="formValues.get('whatsapp')?.invalid && formValues.get('whatsapp')?.touched">Campo invalido</p>
+            <p class="mensagemInvalido" *ngIf="formValues.get('whatsapp')?.invalid && formValues.get('whatsapp')?.touched">Campo invalido</p>
+            <p class="mensagemInvalido" *ngIf="formValues.get('whatsapp') && formValues.get('whatsapp')?.errors && formValues.get('whatsapp') && formSubmitted">Campo Obrigatório</p>
           </div>
           <div class="row">
             <button class="botao" (click)="proximaEtapa(2)">Clique aqui para registrar sua Manifestação</button>
